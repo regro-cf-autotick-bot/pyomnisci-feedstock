@@ -10,7 +10,7 @@ source:
   sha256: adc518d0caab317da34a150c77722073c732a5a7b351f75629e9df69436f6a98
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
@@ -18,6 +18,9 @@ requirements:
   host:
     - python >=3.7
     - pip
+    - setuptools
+    - setuptools-scm
+    - wheel
   run:
     - python >=3.7
     - pyarrow 3.0.0
