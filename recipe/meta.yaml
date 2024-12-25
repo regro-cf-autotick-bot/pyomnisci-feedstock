@@ -6,23 +6,23 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: adc518d0caab317da34a150c77722073c732a5a7b351f75629e9df69436f6a98
 
 build:
-  number: 1
+  number: 2
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - setuptools
     - setuptools-scm
     - wheel
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - pyarrow 3.0.0
     - pyomniscidb >=5.5.0
     - shapely
@@ -33,6 +33,8 @@ requirements:
     - numba >=0.49  # keep consistency with cudf 0.15
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - pyomnisci
 
